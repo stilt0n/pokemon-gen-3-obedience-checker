@@ -39,7 +39,7 @@ export const badges = {
  * @returns {number} the probability that the pokemon will obey an order
  */
 export const getObedienceProbability = (pokemonLevel, obedienceCap, traded) => {
-  if (traded || pokemonLevel <= obedienceCap) return 1;
+  if (!traded || pokemonLevel <= obedienceCap) return 1;
   const rmax = (256 * obedienceCap) / (pokemonLevel + obedienceCap);
   return 1 - (255 - rmax) / 256;
 };
