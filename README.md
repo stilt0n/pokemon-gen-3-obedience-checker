@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Pokemon Generation 3 Obedience Probability Checker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## References
 
-## Available Scripts
+[This checker is based on my wife's project here, if you're here you should check it out](https://github.com/acromyrmetica/obedienceChecker)
 
-In the project directory, you can run:
+Also see:
 
-### `npm start`
+- [Bulbapedia article on obedience](https://bulbapedia.bulbagarden.net/wiki/Obedience)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## About
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This is a very simple React app to calculate the probability a Pokemon will obey your commands.
 
-### `npm test`
+### How it works
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+When pokemon are traded and overleveled they
+don't uniformly disobey orders. Instead, disobedience depends on the formula:
 
-### `npm run build`
+Given:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- A randomly generated integer (R) between 0 and 255
+- The pokemon's level (L)
+- The obedience cap for your highest badge (C)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Disobey when:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+R(L + C) / 256 >= C
+```
 
-### `npm run eject`
+Probability of disobedience depends on the randomly generated integer R, so we'll need to do some algebra to get R by itself first:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+divide both sides by C:
+R(L + C) / 256C >= 1
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+divide both sides by R:
+(L + C) / 256C >= 1 / R
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+take recipricol:
+256C / (L + C) >= R
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To find the probability of disobedience from this, we need to know how many values R can take (between 0 and 255) that satisfy this constraint and divide it by the total number of values. When we do this we get P(disobey)
 
-## Learn More
+```
+R' = 256C / (L + C)
+P(disobey | L, C) = (255 - R') / 256
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If we want the probability a Pokemon obeys, we just need to use the law of total probability:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+P(obey | L, C) = 1 - P(disobey | L, C)
+```
