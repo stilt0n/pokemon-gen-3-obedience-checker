@@ -1,0 +1,12 @@
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 1.5rem;
+}
+
+.traded-checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.5rem;
+}

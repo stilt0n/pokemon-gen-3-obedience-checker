@@ -2,37 +2,87 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.result {
+  color: var(--orange);
+  font-style: italic;
+  font-size: 1rem;
+  padding: 0.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.checker-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.checker-form-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.checker-buttons {
+  flex-direction: row;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin: 1.5rem;
+}
+
+select {
+  width: 18rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 2px var(--deep-blue) solid;
+  background-color: var(--snow-white);
+  color: var(--deep-blue);
+  font-size: 1rem;
+}
+
+label {
+  color: var(--orange);
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+
+button {
+  border-radius: 0.25rem;
+  border: 2px var(--deep-blue) solid;
+  background-color: var(--ice-blue);
+  color: var(--deep-blue);
+  width: 6rem;
+  height: 1.5rem;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+button:hover {
+  background-color: var(--teal);
+}
+
+::placeholder {
+  color: darkgrey;
+  opacity: 1; /* This is specifically for firefox */
+  font-size: 1rem;
+}
+
+::-ms-input-placeholder {
+  color: darkgrey;
+  font-size: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--orange);
+  -webkit-text-stroke: 2px var(--burnt-orange);
+  padding: 0.25rem;
+}
+
+h2, a {
+  color: var(--dark-teal);
+  padding: 0.25rem;
 }

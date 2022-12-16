@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { badges } from "../calculators";
-import { capitalized } from "../util";
+import { badges } from "../../calculators";
+import { capitalized } from "../../util";
 
 export const BadgeSelect = ({ region, setCap }) => {
   const badgeNames = Object.keys(badges[region]);
@@ -11,7 +11,7 @@ export const BadgeSelect = ({ region, setCap }) => {
     setCap(badges[region][badge]);
   };
   return (
-    <div className="badge-select">
+    <div className="container">
       <label>Select your highest badge:</label>
       <select value={selectedBadge} onChange={onSelect}>
         {badgeNames.map((badge, index) => (

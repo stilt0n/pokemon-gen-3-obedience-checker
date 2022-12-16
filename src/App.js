@@ -34,10 +34,14 @@ function App() {
       <div className="checker-form">
         <RegionSelect region={region} setRegion={setRegion} />
         <BadgeSelect region={region} setCap={setCap} />
-        <LevelInput setLevel={setLevel} />
-        <TradedCheckbox traded={traded} setTraded={setTraded} />
-        <button onClick={calculateResult}>Submit</button>
-        <button onClick={clearResult}>Clear Result</button>
+        <div className="checker-form-horizontal">
+          <LevelInput setLevel={setLevel} />
+          <TradedCheckbox traded={traded} setTraded={setTraded} />
+        </div>
+        <div className="checker-buttons">
+          <button onClick={calculateResult}>Submit</button>
+          <button onClick={clearResult}>Clear Result</button>
+        </div>
       </div>
       <div className="result">{result ? <p>{result}</p> : null}</div>
     </div>

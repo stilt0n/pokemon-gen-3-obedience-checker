@@ -1,0 +1,10 @@
+.level-input {
+  width: 5rem;
+  height: 2rem;
+  padding: 0rem 0.25rem;
+  border-radius: 0.5rem;
+  border: 2px var(--deep-blue) solid;
+  background-color: var(--snow-white);
+  color: var(--deep-blue);
+  text-align: center;
+}

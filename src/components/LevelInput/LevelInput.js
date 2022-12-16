@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./LevelInput.css";
 
 export const LevelInput = ({ setLevel }) => {
   const [input, setInput] = useState("");
@@ -7,16 +8,15 @@ export const LevelInput = ({ setLevel }) => {
     setLevel(parseInt(event.target.value));
   };
   return (
-    <div className="level-input">
-      <label>
-        Pokemon Level:
-        <input
-          type="text"
-          placeholder="Enter Level"
-          value={input}
-          onChange={onChange}
-        />
-      </label>
+    <div className="container">
+      <label>Level:</label>
+      <input
+        className="level-input"
+        type="text"
+        placeholder="Enter Level"
+        value={input}
+        onChange={onChange}
+      />
     </div>
   );
 };

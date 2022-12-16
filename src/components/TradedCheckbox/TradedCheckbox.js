@@ -1,6 +1,8 @@
+import "./TradedCheckbox.css";
+
 export const TradedCheckbox = ({ traded, setTraded }) => {
   return (
-    <label>
+    <label className="checkbox-container">
       Traded?
       <input
         className="traded-checkbox"
